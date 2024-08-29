@@ -2,7 +2,7 @@
 
 SetWorkingDir %A_ScriptDir%
 LetterCount = 0
-CurrentQuirk = normal.txt
+CurrentQuirk = normal.csv
 
 FavF9 =
 FavF10 =
@@ -142,7 +142,7 @@ BuildGUI()
     
     gui, font, s12, Verdana
     
-    StringReplace, CurrentQuirkImage, CurrentQuirk, .txt, .png, All
+    StringReplace, CurrentQuirkImage, CurrentQuirk, .csv, .png, All
     
     Gui, Add, Picture, x0 y0 w800 h600, img/Background.png
     
@@ -233,7 +233,7 @@ UseOne:
     {
         if(A_Index = guiItemLess)
         {
-            StringReplace, CurrentQuirk, A_LoopFileFullPath, .png, .txt, All
+            StringReplace, CurrentQuirk, A_LoopFileFullPath, .png, .csv, All
         }
     }
     ApplyQuirk()
@@ -244,7 +244,7 @@ UseTwo:
     {
         if(A_Index = guiItem)
         {
-            StringReplace, CurrentQuirk, A_LoopFileFullPath, .png, .txt, All
+            StringReplace, CurrentQuirk, A_LoopFileFullPath, .png, .csv, All
         }
     }
     ApplyQuirk()
@@ -255,7 +255,7 @@ UseThree:
     {
         if(A_Index = guiItemMore)
         {
-            StringReplace, CurrentQuirk, A_LoopFileFullPath, .png, .txt, All
+            StringReplace, CurrentQuirk, A_LoopFileFullPath, .png, .csv, All
         }
     }
     ApplyQuirk()
@@ -266,7 +266,7 @@ OpenEditor:
 return
 
 OpenHelp:
-    run notepad Help File.txt 
+    run notepad Help File.csv 
 return
 
 ButtonSelect:
@@ -384,7 +384,7 @@ ButtonReset:
     
     Prefix = no prefix
     
-    CurrentQuirk = normal.txt
+    CurrentQuirk = normal.csv
     
 	BuildGUI()
     Return
@@ -504,7 +504,7 @@ ApplyQuirk()
     ReadStaticReplacements()
     ReadDynamicReplacements()
     
-    StringReplace, CurrentQuirkImage, CurrentQuirk, .txt, .png, All
+    StringReplace, CurrentQuirkImage, CurrentQuirk, .csv, .png, All
     GuiControl,, CurrentImage, %CurrentQuirkImage%
 }
 
@@ -728,9 +728,9 @@ ResetQuirk()
     
     Prefix = no prefix
     
-    CurrentQuirk = normal.txt
+    CurrentQuirk = normal.csv
     
-	StringReplace, CurrentQuirkImage, CurrentQuirk, .txt, .png, All
+	StringReplace, CurrentQuirkImage, CurrentQuirk, .csv, .png, All
     GuiControl,, CurrentImage, %CurrentQuirkImage%
 }
 
