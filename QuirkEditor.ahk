@@ -373,7 +373,7 @@ EditWindow()
 }
 
 ButtonSave:
-    FileSelectFile, CurrentQuirk, S,,,Documents (*.txt)
+    FileSelectFile, CurrentQuirk, S,,,Documents (*.csv)
     SaveFile()
     EditWindow()
 return
@@ -576,9 +576,9 @@ SaveFile()
 {
     global
     
-    IfNotInString, CurrentQuirk, .txt
+    IfNotInString, CurrentQuirk, .csv
     {
-        CurrentQuirk =%CurrentQuirk%.txt
+        CurrentQuirk =%CurrentQuirk%.csv
     }
     
     Gui, Submit
