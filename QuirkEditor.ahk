@@ -97,10 +97,12 @@ LetterS32 = ~
 
 Alternate = Alternate false
 WordStart = WordStart false
+WordEnd = WordEnd false
 SentenceStart = SentenceStart false
 
 Alt = 0
-Word = 0
+Start = 0
+End = 0 
 Sentence = 0
 
 Prefix = no prefix
@@ -337,14 +339,21 @@ EditWindow()
     {
         Gui, Add, Checkbox, vAlt, Alternate Letters
     }
-    if Word = 1
+    if Start = 1
     {
-        Gui, Add, Checkbox, Checked vWord, Words
+        Gui, Add, Checkbox, Checked vStart, Starts
     }
     else
     {
-        Gui, Add, Checkbox, vWord, Words
+        Gui, Add, Checkbox, vStart, Starts
     }
+  if End = 1
+    {
+        Gui, Add, Checkbox, Checked vEnd, Ends
+    }
+    else
+    {
+        Gui, Add, Checkbox, vEnd, Ends
     if Sentence = 1
     {
         Gui, Add, Checkbox, Checked vSentence, Sentences
@@ -373,7 +382,7 @@ EditWindow()
 }
 
 ButtonSave:
-    FileSelectFile, CurrentQuirk, S,,,Documents (*.csv)
+    FileSelectFile, CurrentQuirk, S,,,Documents (*.txt)
     SaveFile()
     EditWindow()
 return
@@ -493,10 +502,16 @@ LoadFile()
         Alt = 0
     if(WordStart = "WordStart true")
     {
-        Word = 1
+        Start = 1
     }
     else
-        Word = 0
+        Start = 0
+    if(WordEnd = "WordEnd true")
+    {
+        End = 1
+    }
+    else
+        End = 0
     if(SentenceStart = "SentenceStart true")
     {
         Sentence = 1
@@ -576,9 +591,9 @@ SaveFile()
 {
     global
     
-    IfNotInString, CurrentQuirk, .csv
+    IfNotInString, CurrentQuirk, .txt
     {
-        CurrentQuirk =%CurrentQuirk%.csv
+        CurrentQuirk =%CurrentQuirk%.txt
     }
     
     Gui, Submit
@@ -688,7 +703,15 @@ SaveFile()
     {
         FileAppend,Alternate false`r`n, %CurrentQuirk%
     }
-    if Word = 1
+    if End = 1
+    {
+        FileAppend,WordEnd true`r`n, %CurrentQuirk%
+    }
+    else
+    {
+        FileAppend,WordEnd false`r`n, %CurrentQuirk%
+    }
+  if Start = 1
     {
         FileAppend,WordStart true`r`n, %CurrentQuirk%
     }
